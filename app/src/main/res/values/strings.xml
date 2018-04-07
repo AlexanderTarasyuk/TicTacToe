@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Крестики Нолики</string>
+    <string name="reset">ЗАНОВО</string>
+    <string name="winner_is">И победитель.....</string>
+</resources>
