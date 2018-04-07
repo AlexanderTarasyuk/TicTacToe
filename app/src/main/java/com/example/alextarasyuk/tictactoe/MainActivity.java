@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
 
-        Log.d(LOG, "Bunnon is clicked");
+        Log.d(LOG, "Button is clicked");
         boolean resetButtonIsPressed = false;
 
         switch (v.getId()) {
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     playBoard[2][2] = 1;
                 } else {
                     mButton9.setText("O");
-                    playBoard[2][2] = 1;
+                    playBoard[2][2] = 0;
                 }
 
                 mButton9.setEnabled(false);
@@ -179,24 +179,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 setInfo("Ход второго игрока");
             }
         }
-        if (numberOfSteps == 9) {
-            result("Ничья");
-        }
-
 
         checkWinner();
 
 //        game with computer
 
-        if (mCheckBox.isChecked() &&!Player1&&hasButtonsEnabled(mButtonList)) {
+        if (mCheckBox.isChecked() && !Player1 && hasButtonsEnabled(mButtonList)) {
             for (; ; ) {
 
-                {
-                    Button button = mButtonList.get(new Random().nextInt(mButtonList.size()));
-                    if (button.isEnabled()) {
-                        button.performClick();
-                        return;
-                    }
+                Button button = mButtonList.get(new Random().nextInt(mButtonList.size()));
+                if (button.isEnabled()) {
+                    button.performClick();
+                    return;
                 }
             }
         }
@@ -224,11 +218,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (playBoard[i][0] == 1) {
                     winsOfPlayerOne++;
                     result(" Игрок 1 выиграл");
-                    break;
+                    return;
                 } else if (playBoard[i][0] == 0) {
                     winsOfPlayerTwo++;
                     result("Игрок 2 выиграл");
-                    break;
+                    return;
                 }
             }
         }
@@ -238,14 +232,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (playBoard[0][i] == playBoard[1][i] && playBoard[0][i] == playBoard[2][i]) {
                 if (playBoard[0][i] == 1) {
                     winsOfPlayerOne++;
-
                     result(" Игрок 1 выиграл");
-                    break;
+                    return;
                 } else if (playBoard[0][i] == 0) {
                     winsOfPlayerTwo++;
-
                     result("Игрок 2 выиграл");
-                    break;
+                    return;
                 }
             }
         }
@@ -255,11 +247,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (playBoard[0][0] == 1) {
                 winsOfPlayerOne++;
                 result(" Игрок 1 выиграл");
-
+                return;
 
             } else if (playBoard[0][0] == 0) {
                 winsOfPlayerTwo++;
                 result("Игрок 2 выиграл");
+                return;
             }
         }
 
@@ -268,14 +261,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (playBoard[0][2] == 1) {
                 winsOfPlayerOne++;
                 result(" Игрок 1 выиграл");
+                return;
 
             } else if (playBoard[0][2] == 0) {
                 winsOfPlayerTwo++;
                 result("Игрок 2 выиграл");
+                return;
             }
         }
 
-
+        if (numberOfSteps == 9) {
+            result("Ничья");
+            return;
+        }
     }
 
     private void initializeViews() {
