@@ -6,18 +6,28 @@ import android.util.Log;
 import android.util.TimeUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button mButton1, mButton2, mButton3, mButton4, mButton5, mButton6, mButton7, mButton8, mButton9;
     private Button mButtonReset;
     private TextView mTextView;
+    private CheckBox mCheckBox;
+    private List<Button> mButtonList;
 
     int[][] playBoard = new int[3][3];
     int numberOfSteps = 0;
     private boolean Player1 = true;
+
+    private static int winsOfPlayerOne;
+    private static int winsOfPlayerTwo;
 
     public final static String LOG = MainActivity.class.getSimpleName();
 
@@ -34,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
 
         Log.d(LOG, "Bunnon is clicked");
         boolean resetButtonIsPressed = false;
@@ -160,6 +171,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             numberOfSteps++;
             Player1 = !Player1;
+
+
             if (Player1) {
                 setInfo("Ход первого игрока");
             } else {
@@ -170,7 +183,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             result("Ничья");
         }
 
+
         checkWinner();
+
+//        game with computer
+
+        if (mCheckBox.isChecked() &&!Player1&&hasButtonsEnabled(mButtonList)) {
+            for (; ; ) {
+
+                {
+                    Button button = mButtonList.get(new Random().nextInt(mButtonList.size()));
+                    if (button.isEnabled()) {
+                        button.performClick();
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    private boolean hasButtonsEnabled(List<Button> buttonList) {
+
+        for (Button button : buttonList
+                ) {
+            if (button.isEnabled()) {
+                return true;
+            }
+        }
+        return false;
     }
 
 
@@ -182,9 +222,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (int i = 0; i < 3; i++) {
             if (playBoard[i][0] == playBoard[i][1] && playBoard[i][0] == playBoard[i][2]) {
                 if (playBoard[i][0] == 1) {
+                    winsOfPlayerOne++;
                     result(" Игрок 1 выиграл");
                     break;
                 } else if (playBoard[i][0] == 0) {
+                    winsOfPlayerTwo++;
                     result("Игрок 2 выиграл");
                     break;
                 }
@@ -195,9 +237,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (int i = 0; i < 3; i++) {
             if (playBoard[0][i] == playBoard[1][i] && playBoard[0][i] == playBoard[2][i]) {
                 if (playBoard[0][i] == 1) {
+                    winsOfPlayerOne++;
+
                     result(" Игрок 1 выиграл");
                     break;
                 } else if (playBoard[0][i] == 0) {
+                    winsOfPlayerTwo++;
+
                     result("Игрок 2 выиграл");
                     break;
                 }
@@ -207,9 +253,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //first diagonal
         if (playBoard[0][0] == playBoard[1][1] && playBoard[0][0] == playBoard[2][2]) {
             if (playBoard[0][0] == 1) {
+                winsOfPlayerOne++;
                 result(" Игрок 1 выиграл");
 
+
             } else if (playBoard[0][0] == 0) {
+                winsOfPlayerTwo++;
                 result("Игрок 2 выиграл");
             }
         }
@@ -217,9 +266,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //second diagonal
         if (playBoard[0][2] == playBoard[1][1] && playBoard[0][2] == playBoard[2][0]) {
             if (playBoard[0][2] == 1) {
+                winsOfPlayerOne++;
                 result(" Игрок 1 выиграл");
 
             } else if (playBoard[0][2] == 0) {
+                winsOfPlayerTwo++;
                 result("Игрок 2 выиграл");
             }
         }
@@ -240,6 +291,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mButton9 = findViewById(R.id.button33);
         mButtonReset = findViewById(R.id.button_reset);
         mTextView = findViewById(R.id.text_view);
+        mCheckBox = findViewById(R.id.checkbox);
+
+        mButtonList = new ArrayList<>();
+        mButtonList.add(mButton1);
+        mButtonList.add(mButton2);
+        mButtonList.add(mButton3);
+        mButtonList.add(mButton4);
+        mButtonList.add(mButton5);
+        mButtonList.add(mButton6);
+        mButtonList.add(mButton7);
+        mButtonList.add(mButton8);
+        mButtonList.add(mButton9);
+
     }
 
     private void setOnClickListener() {
@@ -293,7 +357,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void result(String result) {
 
         Log.d(LOG, "result method");
-        setInfo(result + "\n НОВАЯ ИГРА");
+        setInfo(result + "\n НОВАЯ ИГРА" + "\n побед первого игрока =" + winsOfPlayerOne + "\n побед второго игрока:" + winsOfPlayerTwo);
         enableAllButtons(false);
         startNewGame();
         Toast.makeText(this, "Игра окончена", Toast.LENGTH_LONG).show();

@@ -174,5 +174,13 @@
         android:textSize="@dimen/button_text_size"
         />
 
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_reset"
+        android:text="Play with computer?"
+        android:visibility="visible"/>
+
 
 </RelativeLayout>
