@@ -42,40 +42,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setOnClickListener();
         startNewGame();
 
-        if (state != null) {
-
-            super.onRestoreInstanceState(state);
-
-            mButton1.setEnabled(state.getBoolean("Button1 state"));
-            mButton2.setEnabled(state.getBoolean("Button2 state"));
-            mButton3.setEnabled(state.getBoolean("Button3 state"));
-            mButton4.setEnabled(state.getBoolean("Button4 state"));
-            mButton5.setEnabled(state.getBoolean("Button5 state"));
-            mButton6.setEnabled(state.getBoolean("Button6 state"));
-            mButton7.setEnabled(state.getBoolean("Button7 state"));
-            mButton8.setEnabled(state.getBoolean("Button8 state"));
-            mButton9.setEnabled(state.getBoolean("Button9 state"));
-
-            mButton1.setText(state.getString("Button1 text"));
-            mButton2.setText(state.getString("Button2 text"));
-            mButton3.setText(state.getString("Button3 text"));
-            mButton4.setText(state.getString("Button4 text"));
-            mButton5.setText(state.getString("Button5 text"));
-            mButton6.setText(state.getString("Button6 text"));
-            mButton7.setText(state.getString("Button7 text"));
-            mButton8.setText(state.getString("Button8 text"));
-            mButton9.setText(state.getString("Button9 text"));
-
-            mCheckBox.setChecked(state.getBoolean("Value of Checkbox"));
-            winsOfPlayerOne = state.getInt("Wins of first player");
-            winsOfPlayerTwo = state.getInt("Wins of second player");
-            Player1 = state.getBoolean("Player1 turn");
-            mTextView.setText(state.getString("Text view"));
-
-            playBoard[0] = state.getIntArray("playboard0");
-            playBoard[1] = state.getIntArray("playboard1");
-            playBoard[2] = state.getIntArray("playboard2");
-        }
+//        if (state != null) {
+//
+//            super.onRestoreInstanceState(state);
+//
+//            mButton1.setEnabled(state.getBoolean("Button1 state"));
+//            mButton2.setEnabled(state.getBoolean("Button2 state"));
+//            mButton3.setEnabled(state.getBoolean("Button3 state"));
+//            mButton4.setEnabled(state.getBoolean("Button4 state"));
+//            mButton5.setEnabled(state.getBoolean("Button5 state"));
+//            mButton6.setEnabled(state.getBoolean("Button6 state"));
+//            mButton7.setEnabled(state.getBoolean("Button7 state"));
+//            mButton8.setEnabled(state.getBoolean("Button8 state"));
+//            mButton9.setEnabled(state.getBoolean("Button9 state"));
+//
+//            mButton1.setText(state.getString("Button1 text"));
+//            mButton2.setText(state.getString("Button2 text"));
+//            mButton3.setText(state.getString("Button3 text"));
+//            mButton4.setText(state.getString("Button4 text"));
+//            mButton5.setText(state.getString("Button5 text"));
+//            mButton6.setText(state.getString("Button6 text"));
+//            mButton7.setText(state.getString("Button7 text"));
+//            mButton8.setText(state.getString("Button8 text"));
+//            mButton9.setText(state.getString("Button9 text"));
+//
+//            mCheckBox.setChecked(state.getBoolean("Value of Checkbox"));
+//            winsOfPlayerOne = state.getInt("Wins of first player");
+//            winsOfPlayerTwo = state.getInt("Wins of second player");
+//            Player1 = state.getBoolean("Player1 turn");
+//            mTextView.setText(state.getString("Text view"));
+//
+//            playBoard[0] = state.getIntArray("playboard0");
+//            playBoard[1] = state.getIntArray("playboard1");
+//            playBoard[2] = state.getIntArray("playboard2");
+//        }
 
     }
 
@@ -420,42 +420,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mButton9.setEnabled(value);
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle state) {
-        super.onSaveInstanceState(state);
-
-        state.putBoolean("Button1 state", mButton1.isEnabled());
-        state.putBoolean("Button2 state", mButton2.isEnabled());
-        state.putBoolean("Button3 state", mButton3.isEnabled());
-        state.putBoolean("Button4 state", mButton4.isEnabled());
-        state.putBoolean("Button5 state", mButton5.isEnabled());
-        state.putBoolean("Button6 state", mButton6.isEnabled());
-        state.putBoolean("Button7 state", mButton7.isEnabled());
-        state.putBoolean("Button8 state", mButton8.isEnabled());
-        state.putBoolean("Button9 state", mButton9.isEnabled());
-
-        state.putString("Button1 text", mButton1.getText().toString());
-        state.putString("Button2 text", mButton2.getText().toString());
-        state.putString("Button3 text", mButton3.getText().toString());
-        state.putString("Button4 text", mButton4.getText().toString());
-        state.putString("Button5 text", mButton5.getText().toString());
-        state.putString("Button6 text", mButton6.getText().toString());
-        state.putString("Button7 text", mButton7.getText().toString());
-        state.putString("Button8 text", mButton8.getText().toString());
-        state.putString("Button9 text", mButton9.getText().toString());
-
-        state.putBoolean("Value of Checkbox", mCheckBox.isChecked());
-        state.putInt("Wins of first player", winsOfPlayerOne);
-        state.putInt("Wins of second player", winsOfPlayerTwo);
-        state.putBoolean("Player1 turn", Player1);
-        state.putString("Text view", mTextView.getText().toString());
-
-        state.putIntArray("playboard0", playBoard[0]);
-        state.putIntArray("playboard1", playBoard[1]);
-        state.putIntArray("playboard2", playBoard[2]);
-
-
-    }
+//    @Override
+//    protected void onSaveInstanceState(Bundle state) {
+//        super.onSaveInstanceState(state);
+//
+//        state.putBoolean("Button1 state", mButton1.isEnabled());
+//        state.putBoolean("Button2 state", mButton2.isEnabled());
+//        state.putBoolean("Button3 state", mButton3.isEnabled());
+//        state.putBoolean("Button4 state", mButton4.isEnabled());
+//        state.putBoolean("Button5 state", mButton5.isEnabled());
+//        state.putBoolean("Button6 state", mButton6.isEnabled());
+//        state.putBoolean("Button7 state", mButton7.isEnabled());
+//        state.putBoolean("Button8 state", mButton8.isEnabled());
+//        state.putBoolean("Button9 state", mButton9.isEnabled());
+//
+//        state.putString("Button1 text", mButton1.getText().toString());
+//        state.putString("Button2 text", mButton2.getText().toString());
+//        state.putString("Button3 text", mButton3.getText().toString());
+//        state.putString("Button4 text", mButton4.getText().toString());
+//        state.putString("Button5 text", mButton5.getText().toString());
+//        state.putString("Button6 text", mButton6.getText().toString());
+//        state.putString("Button7 text", mButton7.getText().toString());
+//        state.putString("Button8 text", mButton8.getText().toString());
+//        state.putString("Button9 text", mButton9.getText().toString());
+//
+//        state.putBoolean("Value of Checkbox", mCheckBox.isChecked());
+//        state.putInt("Wins of first player", winsOfPlayerOne);
+//        state.putInt("Wins of second player", winsOfPlayerTwo);
+//        state.putBoolean("Player1 turn", Player1);
+//        state.putString("Text view", mTextView.getText().toString());
+//
+//        state.putIntArray("playboard0", playBoard[0]);
+//        state.putIntArray("playboard1", playBoard[1]);
+//        state.putIntArray("playboard2", playBoard[2]);
+//
+//
+//    }
 
 
 //    @Override
